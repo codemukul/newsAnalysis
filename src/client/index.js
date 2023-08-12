@@ -1,19 +1,21 @@
-import { checkForName } from './js/nameChecker'
-import { handleSubmit } from './js/formHandler'
+import { postInputValue, getData } from './js/requests';
+import { handleSubmit, handleChange, inputChecker, updateUI, displayWarn } from './js/formHandler';
 
-import './styles/resets.scss'
-import './styles/base.scss'
-import './styles/footer.scss'
-import './styles/form.scss'
-import './styles/header.scss'
+import './styles/resets.scss';
+import './styles/base.scss';
+import './styles/footer.scss';
+import './styles/form.scss';
+import './styles/header.scss';
 
-console.log(checkForName);
+// console.log('CHANGE!!');
 
+const btn = document.getElementById('btn');
+const input_data = document.getElementById('input');
+const input_form = document.getElementById('form');
 
-alert("I EXIST")
-console.log("CHANGE!!");
+input_data.addEventListener('click', handleChange);
 
-export {
-    checkForName,
-    handleSubmit
-}
+input_form.addEventListener('submit', handleSubmit);
+
+export { postInputValue, getData };
+export { handleSubmit, handleChange, inputChecker, updateUI, displayWarn };
