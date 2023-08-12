@@ -1,19 +1,19 @@
-const output_polarity = document.getElementById('polarity');
-const output_subjectivity = document.getElementById('subjectivity');
-const output_confidence = document.getElementById('confidence');
 const input_text_returned = document.getElementById('input-text');
+const output_polarity = document.getElementById('polarity');
+const output_confidence = document.getElementById('confidence');
+const output_subjectivity = document.getElementById('subjectivity');
 
-const polarity = {
+const polarity_types = {
+  NONE: 'Not-defined',
   'P+': 'Strong-positive',
   P: 'Positive',
-  NEU: 'Neutral',
-  N: 'Negative',
   'N+': 'Strong-negative',
-  NONE: 'Not-defined',
+  N: 'Negative',
+  NEU: 'Neutral',
 };
 
 const updateUI = (data) => {
-  output_polarity.textContent = polarity[data.polarity];
+  output_polarity.textContent = polarity_types[data.polarity];
   output_subjectivity.textContent = data.subjectivity.toLowerCase();
   output_confidence.textContent = data.confidence;
   input_text_returned.textContent = data.text;
@@ -24,7 +24,7 @@ const displayWarn = () => {
   p.textContent = 'Plz enter a valid URL or text';
 };
 
-const inputChecker = (value) => {
+const typeValidation = (value) => {
   const info = {};
   if (value.startsWith('http')) {
     info.type = 'url';
@@ -44,16 +44,16 @@ const handleSubmit = async (event) => {
   event.preventDefault();
 
   const inputValue = document.getElementById('input').value;
-  const info = inputChecker(inputValue);
+  const info = typeValidation(inputValue);
 
-  Client.postInputValue(info, 'http://localhost:8081/send_sample');
+  Client.sendSample(info, 'http://localhost:8081/send_sample');
 
   let promise = new Promise((resolve) => {
     setTimeout(() => resolve("waiting..."), 200)
   });
   await promise;
 
-  Client.getData();
+  Client.getAnalysis();
 };
 
-export { handleSubmit, handleChange, inputChecker, updateUI, displayWarn };
+export { handleSubmit, handleChange, typeValidation, updateUI, displayWarn };

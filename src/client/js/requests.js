@@ -1,4 +1,4 @@
-const getData = async () => {
+const getAnalysis = async () => {
   const res = await fetch('http://localhost:8081/get_analysis');
   try {
     const data = await res.json();
@@ -11,7 +11,7 @@ const getData = async () => {
 };
 
 
-const postInputValue = async (data, URL) => {
+const sendSample = async (data, URL) => {
     const res = await fetch(URL, {
         method: 'POST',
       credentials: 'same-origin',
@@ -29,4 +29,4 @@ const postInputValue = async (data, URL) => {
     }
   };
   
-export { postInputValue, getData };
+export { sendSample, getAnalysis };

@@ -1,5 +1,5 @@
-import { postInputValue, getData } from './js/requests';
-import { handleSubmit, handleChange, inputChecker, updateUI, displayWarn } from './js/formHandler';
+import { sendSample, getAnalysis } from './js/requests';
+import { handleSubmit, handleChange, typeValidation, updateUI, displayWarn } from './js/formHandler';
 
 import './styles/resets.scss';
 import './styles/base.scss';
@@ -17,5 +17,5 @@ input_data.addEventListener('click', handleChange);
 
 input_form.addEventListener('submit', handleSubmit);
 
-export { postInputValue, getData };
-export { handleSubmit, handleChange, inputChecker, updateUI, displayWarn };
+export { sendSample, getAnalysis };
+export { handleSubmit, handleChange, typeValidation, updateUI, displayWarn };
